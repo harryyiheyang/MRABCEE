@@ -30,7 +30,7 @@
 
 MRBCEE=function(by,bX,byse,bXse,LD,Rxy,cluster.index,Nmin=F,tauvec=seq(3,50,by=2),max.iter=100,max.eps=0.001,ebic.gamma=1,reliability.thres=0.5,rho=2,maxdiff=1.5,parametric=F,sampling.time=0,sampling.frac=0.5,theta.ini=F,gamma.ini=F){
 if(is.vector(bX)==T){
-A=MRBCEE.UV(by=by,bX=bX,byse=byse,bXse=bXse,LD=LD,Rxy=Rxy,Nmin=Nmin,tauvec=tauvec,max.iter=max.iter,max.eps=max.eps,ebic.gamma=ebic.gamma,maxdiff=maxdiff,theta.ini=theta.ini,gamma.ini=gamma.ini,reliability.thres=reliability.thres)
+A=MRBCEE.UV(by=by,bX=bX,byse=byse,bXse=bXse,LD=LD,Rxy=Rxy,cluster.index=cluster.index,Nmin=Nmin,tauvec=tauvec,max.iter=max.iter,max.eps=max.eps,ebic.gamma=ebic.gamma,maxdiff=maxdiff,theta.ini=theta.ini,gamma.ini=gamma.ini,reliability.thres=reliability.thres)
 }else{
 ########################### Basic information #######################
 by=by/byse
