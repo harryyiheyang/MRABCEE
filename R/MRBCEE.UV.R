@@ -31,7 +31,6 @@ gamma.ini=fit0$beta*(fit0$pip>0.8)
 theta.ini=fit0$beta.cov[-1]}
 ############################## Tuning Parameter ######################
 w=length(tauvec)
-q=length(adjustvec)
 Btheta=c(1:w)
 Bgamma=matrix(0,m,w)
 Bbic=tauvec
@@ -93,7 +92,7 @@ a=which(cluster.index==j)
 S[a,a]=outer(res[a],res[a])
 }
 COV=H%*%(t(bZinv)%*%S%*%bZinv)%*%H
-theta.se=sqrt(diag(COV))[1,1]
+theta.se=sqrt(diag(COV))[1]
 }else{
 ThetaList=c(1:sampling.time)
 for(j in 1:sampling.time){
@@ -102,15 +101,12 @@ indj=which(cluster.index%in%cluster.sampling)
 indj=sort(indj)
 LDj=Matrix(LD[indj,indj],sparse=T)
 Thetaj=solve(LDj)
-Bt <- c(t(bX[indj, ])%*%Thetaj)
-BtB=c(Bt*bX[indj,])
+Bt <- as.matrix(t(bX[indj])%*%Thetaj)
+BtB=c(Bt%*%bX[indj])
 indvalidj=intersect(indvalid,indj)
 Hinv=1/(BtB-sum(bXse[indvalidj]^2)*Rxy[1,1])
 g=sum(Bt*(by[indj]-matrixVectorMultiply(LD[indj,indgamma],gamma[indgamma])))-sum(bXse[indvalidj])*Rxy[2,1]
 thetaj=g*Hinv
-if((norm(thetaj,"2")/norm(theta.ini,"2"))>maxdiff){
-thetaj=thetaj/norm(thetaj,"2")*maxdiff*norm(theta.ini,"2")
-}
 ThetaList[j]=thetaj
 }
 theta.se=sd(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
