@@ -17,7 +17,7 @@ MRBCEE(
   max.iter = 100,
   max.eps = 0.001,
   ebic.gamma = 1,
-  reliability.thres = 0.7,
+  reliability.thres = 0.5,
   rho = 2,
   maxdiff = 1.5,
   parametric = F,
@@ -52,7 +52,7 @@ MRBCEE(
 
 \item{ebic.gamma}{The penalty factor for extended Bayesian Information Criterion (eBIC) adjustments on pleiotropy.}
 
-\item{reliability.thres}{A threshold on bias-correction term, defaults to 0.7.}
+\item{reliability.thres}{A threshold on bias-correction term, defaults to 0.5.}
 
 \item{rho}{The penalty multiplier used in the ADMM algorithm within the IPOD framework.}
 

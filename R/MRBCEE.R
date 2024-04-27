@@ -14,7 +14,7 @@
 #' @param max.iter The maximum number of iterations allowed for convergence of the causal effect estimates.
 #' @param max.eps The tolerance level for convergence; iteration stops when changes are below this threshold.
 #' @param ebic.gamma The penalty factor for extended Bayesian Information Criterion (eBIC) adjustments on pleiotropy.
-#' @param reliability.thres A threshold on bias-correction term, defaults to 0.7.
+#' @param reliability.thres A threshold on bias-correction term, defaults to 0.5.
 #' @param rho The penalty multiplier used in the ADMM algorithm within the IPOD framework.
 #' @param sampling.time The number of subsampling iterations used to estimate the standard error of the causal effect estimate. Defaults to 1. When set to 1, a sandwich formula is applied for the estimation.
 #' @param sampling.frac The fraction of the data to be used in each subsampling iteration. Defaults to 0.5, meaning that 50% of the data is used in each iteration.
@@ -28,7 +28,7 @@
 #' @importFrom Matrix Matrix solve
 #' @export
 
-MRBCEE=function(by,bX,byse,bXse,LD,Rxy,cluster.index,Nmin=F,tauvec=seq(3,50,by=2),max.iter=100,max.eps=0.001,ebic.gamma=1,reliability.thres=0.7,rho=2,maxdiff=1.5,parametric=F,sampling.time=0,sampling.frac=0.5,theta.ini=F,gamma.ini=F){
+MRBCEE=function(by,bX,byse,bXse,LD,Rxy,cluster.index,Nmin=F,tauvec=seq(3,50,by=2),max.iter=100,max.eps=0.001,ebic.gamma=1,reliability.thres=0.5,rho=2,maxdiff=1.5,parametric=F,sampling.time=0,sampling.frac=0.5,theta.ini=F,gamma.ini=F){
 if(is.vector(bX)==T){
 A=MRBCEE.UV(by=by,bX=bX,byse=byse,bXse=bXse,LD=LD,Rxy=Rxy,Nmin=Nmin,tauvec=tauvec,max.iter=max.iter,max.eps=max.eps,ebic.gamma=ebic.gamma,maxdiff=maxdiff,theta.ini=theta.ini,gamma.ini=gamma.ini,reliability.thres=reliability.thres)
 }else{
