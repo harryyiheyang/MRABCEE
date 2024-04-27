@@ -73,7 +73,6 @@ error=1
 iter=1
 theta=theta
 gamma=gamma
-names(theta)=names(bX)
 names(gamma)=rownames(bX)
 indgamma=which(gamma!=0)
 indvalid=which(gamma==0)
