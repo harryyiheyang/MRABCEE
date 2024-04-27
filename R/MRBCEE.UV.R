@@ -81,7 +81,7 @@ if(sampling.time==0){
 bZ=as.matrix(cbind(bX,LD[,indgamma]))
 bZinv=Theta%*%bZ
 H=t(bZ)%*%bZinv
-H[1,1]=H[1,1]-Rxysum[1,1]
+H[1,1]=H[1,1]-sum(bXse[indvalid]^2)*Rxy[1,1]
 H=matrixInverse(H)
 Hat=bZ%*%(H%*%t(bZ))
 Hat=1-diag(Hat)
