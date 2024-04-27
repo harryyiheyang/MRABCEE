@@ -227,6 +227,7 @@ r=sqrt(r)
 }else{
 p=ncol(bX)
 r=rep(1,p)
+m=length(bX[,1])
 total.var=diag(matrixListProduct(list(t(bX),Theta,bX)))/m
 error.var=colMeans(bXse^2)
 reliability=(total.var-error.var)/total.var
