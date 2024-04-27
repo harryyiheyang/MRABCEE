@@ -6,7 +6,7 @@ bX=bX*byseinv
 bXse=bXse*byseinv
 byse1=byse
 byse=byse/byse
-m=nrow(bX)
+m=length(bX)
 if(Nmin==F){
 Nmin=m
 }
