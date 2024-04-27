@@ -61,6 +61,7 @@ error=abs(theta-theta1)
 Btheta[j]=theta
 Bgamma[,j]=gamma1
 df1=sum(gamma1!=0)
+res=by-bX*theta-matrixVectorMultiply(LD,gamma)
 rss=sum(res*c(matrixVectorMultiply(Theta,res)))
 Bbic[j]=Nmin*log(rss)+(log(Nmin)+ebic.gamma*log(m))*df1
 }
