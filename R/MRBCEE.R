@@ -1,4 +1,4 @@
-#' Mendelian Randomization using Adjusted Bias-correction Correlated Estimating Equation.
+#' Mendelian Randomization using Bias-correction Correlated Estimating Equation.
 #'
 #' Detailed description of the function goes here.
 #'
@@ -28,9 +28,9 @@
 #' @importFrom Matrix Matrix solve
 #' @export
 
-MRABCEE=function(by,bX,byse,bXse,LD,Rxy,cluster.index,Nmin=F,tauvec=seq(3,50,by=2),max.iter=100,max.eps=0.001,ebic.gamma=1,reliability.thres=0.7,rho=2,maxdiff=1.5,parametric=F,sampling.time=0,sampling.frac=0.5,theta.ini=F,gamma.ini=F){
+MRBCEE=function(by,bX,byse,bXse,LD,Rxy,cluster.index,Nmin=F,tauvec=seq(3,50,by=2),max.iter=100,max.eps=0.001,ebic.gamma=1,reliability.thres=0.7,rho=2,maxdiff=1.5,parametric=F,sampling.time=0,sampling.frac=0.5,theta.ini=F,gamma.ini=F){
 if(is.vector(bX)==T){
-A=MRABCEE.UV(by=by,bX=bX,byse=byse,bXse=bXse,LD=LD,Rxy=Rxy,Nmin=Nmin,tauvec=tauvec,max.iter=max.iter,max.eps=max.eps,ebic.gamma=ebic.gamma,maxdiff=maxdiff,theta.ini=theta.ini,gamma.ini=gamma.ini,reliability.thres=reliability.thres)
+A=MRBCEE.UV(by=by,bX=bX,byse=byse,bXse=bXse,LD=LD,Rxy=Rxy,Nmin=Nmin,tauvec=tauvec,max.iter=max.iter,max.eps=max.eps,ebic.gamma=ebic.gamma,maxdiff=maxdiff,theta.ini=theta.ini,gamma.ini=gamma.ini,reliability.thres=reliability.thres)
 }else{
 ########################### Basic information #######################
 by=by/byse
