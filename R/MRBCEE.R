@@ -151,7 +151,7 @@ Bt <- as.matrix(t(bX[indj, ])%*%Thetaj)
 BtB=matrixMultiply(Bt,bX[indj,])
 indvalidj=intersect(indvalid,indj)
 Rxysumj=biasterm(RxyList=RxyList,indvalidj)
-Hinv=matrixInverse(BtB-Rxysumj[1:p,1:p])
+Hinv=matrixGeneralizedInverse(BtB-Rxysumj[1:p,1:p])
 g=matrixVectorMultiply(Bt,by[indj]-matrixVectorMultiply(LD[indj,indgamma],gamma[indgamma]))-Rxysum[1:p,p+1]
 thetaj=c(matrixVectorMultiply(Hinv,g))
 if((norm(thetaj,"2")/norm(theta.ini,"2"))>maxdiff){
