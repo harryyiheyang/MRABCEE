@@ -67,7 +67,7 @@ Bbic[j]=Nmin*log(rss)+(log(Nmin)+ebic.gamma*log(m))*df1
 }
 ######################## Inference #################################
 jstar=which.min(Bbic)
-theta=Btheta[,jstar]
+theta=Btheta[jstar]
 gamma=Bgamma[,jstar]
 error=1
 iter=1
