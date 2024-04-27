@@ -169,6 +169,7 @@ A$theta.se=theta.se
 A$Bic=Bbic
 A$theta.ini=theta.ini
 A$gamma.ini=gamma.ini
+A$reliability.adjust=r
 }
 return(A)
 }
