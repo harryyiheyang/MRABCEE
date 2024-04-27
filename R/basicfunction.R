@@ -196,7 +196,7 @@ error.var=mean(bxse^2)
 reliability=(total.var-error.var)/total.var
 r=1
 if(reliability<thres){
-r=total.var/error.var*(1-t)
+r=total.var/error.var*(1-thres)
 }
 r=sqrt(r)
 }else{
@@ -205,7 +205,7 @@ total.var=mean(bx*matrixVectorMultiply(Theta,bx))
 error.var=mean(bxse^2)
 reliability=(total.var-error.var)/total.var
 if(reliability<thres){
-r=total.var/error.var*(1-t)
+r=total.var/error.var*(1-thres)
 }
 r=sqrt(r)
 }
