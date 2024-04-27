@@ -1,4 +1,4 @@
-MRABCEE.UV=function(by,bX,byse,bXse,LD=LD,Rxy,cluster.index,Nmin=F,tauvec=seq(3,50,by=2),adjustvec=seq(0.85,1,by=0.05),max.iter=100,max.eps=0.001,ebic.gamma=1,ebic.adjustment=1,rho=2,maxdiff=1.5,parametric=F,sampling.time=0,sampling.frac=0.5,theta.ini=F,gamma.ini=F){
+MRBCEE.UV=function(by,bX,byse,bXse,LD=LD,Rxy,cluster.index,Nmin=F,tauvec=seq(3,50,by=2),adjustvec=seq(0.85,1,by=0.05),max.iter=100,max.eps=0.001,ebic.gamma=1,ebic.adjustment=1,rho=2,maxdiff=1.5,parametric=F,sampling.time=0,sampling.frac=0.5,theta.ini=F,gamma.ini=F){
 ########################### Basic information #######################
 by=by/byse
 byseinv=1/byse
