@@ -194,11 +194,13 @@ if(Theta[1]=="identify"){
 total.var=mean(bx^2)
 error.var=mean(bxse^2)
 reliability=(total.var-error.var)/total.var
+r=1
 if(reliability<thres){
 r=total.var*(1/thres-1)/error.var
 }
 r=sqrt(r)
 }else{
+r=1
 total.var=mean(bx*matrixVectorMultiply(Theta,bx))
 error.var=mean(bxse^2)
 reliability=(total.var-error.var)/total.var
@@ -213,6 +215,7 @@ return(r)
 reliability.adj=function(bX,bXse,Theta="identify",thres=0.7){
 if(Theta[1]=="identify"){
 p=ncol(bX)
+r=rep(1,p)
 total.var=colMeans(bX^2)
 error.var=colMeans(bXse^2)
 reliability=(total.var-error.var)/total.var
@@ -223,6 +226,7 @@ r[ind]=total.var[ind]*(1/thres-1)/error.var[ind]
 r=sqrt(r)
 }else{
 p=ncol(bX)
+r=rep(1,p)
 total.var=diag(matrixListProduct(list(t(bX),Theta,bX)))
 error.var=colMeans(bXse^2)
 reliability=(total.var-error.var)/total.var
