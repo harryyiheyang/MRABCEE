@@ -32,7 +32,7 @@ theta.ini=fit0$beta.cov[-1]}
 ############################## Tuning Parameter ######################
 w=length(tauvec)
 q=length(adjustvec)
-Btheta=matrix(0,p,w)
+Btheta=c(1:w)
 Bgamma=matrix(0,m,w)
 Bbic=tauvec
 for(j in length(tauvec):1){
@@ -58,8 +58,8 @@ if(iter>3){
 error=abs(theta-theta1)
 }
 }
-Btheta[j,s]=theta
-Bgamma[,j,s]=gamma1
+Btheta[j]=theta
+Bgamma[,j]=gamma1
 df1=sum(gamma1!=0)
 rss=sum(res*c(matrixVectorMultiply(Theta,res)))
 Bbic[j]=Nmin*log(rss)+(log(Nmin)+ebic.gamma*log(m))*df1
