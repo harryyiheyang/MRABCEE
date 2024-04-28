@@ -152,7 +152,7 @@ BtB=matrixMultiply(Bt,bX[indj,])
 indvalidj=intersect(indvalid,indj)
 Rxysumj=biasterm(RxyList=RxyList,indvalidj)
 Hinv=matrixGeneralizedInverse(BtB-Rxysumj[1:p,1:p])
-g=matrixVectorMultiply(Bt,by[indj]-matrixVectorMultiply(LD[indj,indgamma],gamma[indgamma]))-Rxysum[1:p,p+1]
+g=matrixVectorMultiply(Bt,by[indj]-matrixVectorMultiply(LD[indj,],gamma))-Rxysum[1:p,p+1]
 thetaj=c(matrixVectorMultiply(Hinv,g))
 if((norm(thetaj,"2")/norm(theta.ini,"2"))>maxdiff){
 thetaj=thetaj/norm(thetaj,"2")*maxdiff*norm(theta.ini,"2")
