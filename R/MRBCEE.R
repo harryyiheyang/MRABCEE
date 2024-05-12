@@ -138,8 +138,9 @@ a=which(cluster.index==j)
 S[a,a]=outer(res[a],res[a])
 }
 COV=matrixListProduct(list(H,t(bZinv),S,bZinv,H))*m/(m-ncol(bZ))
-theta.cov=COV
+theta.cov=COV[1:p,1:p]
 theta.se=sqrt(diag(COV))[1:p]
+colnames(theta.cov)=rownames(theta.cov)=names(theta.se)=colnames(bX)
 }else{
 ThetaList=matrix(0,sampling.time,p)
 for(j in 1:sampling.time){
@@ -162,8 +163,8 @@ ThetaList[j,]=thetaj
 }
 theta.se=colSD(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
 theta.cov=cov(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
+colnames(theta.cov)=rownames(theta.cov)=names(theta.se)=colnames(bX)
 }
-
 A=list()
 A$theta=theta
 A$gamma=gamma
