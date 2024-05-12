@@ -138,6 +138,7 @@ a=which(cluster.index==j)
 S[a,a]=outer(res[a],res[a])
 }
 COV=matrixListProduct(list(H,t(bZinv),S,bZinv,H))*m/(m-ncol(bZ))
+theta.cov=COV
 theta.se=sqrt(diag(COV))[1:p]
 }else{
 ThetaList=matrix(0,sampling.time,p)
