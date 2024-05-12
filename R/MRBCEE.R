@@ -160,12 +160,14 @@ thetaj=thetaj/norm(thetaj,"2")*maxdiff*norm(theta.ini,"2")
 ThetaList[j,]=thetaj
 }
 theta.se=colSD(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
+theta.cov=cov(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
 }
 
 A=list()
 A$theta=theta
 A$gamma=gamma
 A$theta.se=theta.se
+A$theta.cov=theta.cov
 A$Bic=Bbic
 A$theta.ini=theta.ini
 A$gamma.ini=gamma.ini
