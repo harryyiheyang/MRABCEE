@@ -165,7 +165,6 @@ thetaj <- thetaj / norm(thetaj, "2") * maxdiff * norm(theta.ini, "2")
 ThetaList[j, ] <- thetaj
 }
 close(pb)
-cat("Bootstrapping process completed.\n")
 theta.se=colSD(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
 theta.cov=cov(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
 colnames(theta.cov)=rownames(theta.cov)=names(theta.se)=colnames(bX)
