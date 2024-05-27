@@ -143,8 +143,8 @@ theta.se=sqrt(diag(COV))[1:p]
 colnames(theta.cov)=rownames(theta.cov)=names(theta.se)=colnames(bX)
 }else{
 ThetaList=matrix(0,sampling.time,p)
-pb <- txtProgressBar(min = 0, max = sampling.time, style = 3)
 cat("Bootstrapping process:\n")
+pb <- txtProgressBar(min = 0, max = sampling.time, style = 3)
 for(j in 1:sampling.time) {
 setTxtProgressBar(pb, j)
 cluster.sampling <- sample(1:max(cluster.index), round(sampling.frac * max(cluster.index)), replace = FALSE)
