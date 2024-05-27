@@ -143,24 +143,29 @@ theta.se=sqrt(diag(COV))[1:p]
 colnames(theta.cov)=rownames(theta.cov)=names(theta.se)=colnames(bX)
 }else{
 ThetaList=matrix(0,sampling.time,p)
-for(j in 1:sampling.time){
-cluster.sampling=sample(1:max(cluster.index),round(sampling.frac*max(cluster.index)),replace=F)
-indj=which(cluster.index%in%cluster.sampling)
-indj=sort(indj)
-LDj=Matrix(LD[indj,indj],sparse=T)
-Thetaj=solve(LDj)
-Bt <- as.matrix(t(bX[indj, ])%*%Thetaj)
-BtB=matrixMultiply(Bt,bX[indj,])
-indvalidj=intersect(indvalid,indj)
-Rxysumj=biasterm(RxyList=RxyList,indvalidj)
-Hinv=solve(BtB-Rxysumj[1:p,1:p])
-g=matrixVectorMultiply(Bt,by[indj]-matrixVectorMultiply(LD[indj,],gamma))-Rxysum[1:p,p+1]
-thetaj=c(matrixVectorMultiply(Hinv,g))
-if((norm(thetaj,"2")/norm(theta.ini,"2"))>maxdiff){
-thetaj=thetaj/norm(thetaj,"2")*maxdiff*norm(theta.ini,"2")
+pb <- txtProgressBar(min = 0, max = sampling.time, style = 3)
+cat("Bootstrapping process:\n")
+for(j in 1:sampling.time) {
+setTxtProgressBar(pb, j)
+cluster.sampling <- sample(1:max(cluster.index), round(sampling.frac * max(cluster.index)), replace = FALSE)
+indj <- which(cluster.index %in% cluster.sampling)
+indj <- sort(indj)
+LDj <- Matrix(LD[indj, indj], sparse = TRUE)
+Thetaj <- solve(LDj)
+Bt <- as.matrix(t(bX[indj, ]) %*% Thetaj)
+BtB <- matrixMultiply(Bt, bX[indj, ])
+indvalidj <- intersect(indvalid, indj)
+Rxysumj <- biasterm(RxyList = RxyList, indvalidj)
+Hinv <- solve(BtB - Rxysumj[1:p, 1:p])
+g <- matrixVectorMultiply(Bt, by[indj] - matrixVectorMultiply(LD[indj, ], gamma)) - Rxysum[1:p, p + 1]
+thetaj <- c(matrixVectorMultiply(Hinv, g))
+if((norm(thetaj, "2") / norm(theta.ini, "2")) > maxdiff) {
+thetaj <- thetaj / norm(thetaj, "2") * maxdiff * norm(theta.ini, "2")
 }
-ThetaList[j,]=thetaj
+ThetaList[j, ] <- thetaj
 }
+close(pb)
+cat("Bootstrapping process completed.\n")
 theta.se=colSD(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
 theta.cov=cov(ThetaList)*sqrt((m-length(theta))/(m-length(theta)-length(indgamma)))
 colnames(theta.cov)=rownames(theta.cov)=names(theta.se)=colnames(bX)
